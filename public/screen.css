@@ -11,3 +11,11 @@ body {
   min-height: 100%;
   text-align: center;
 }
+
+.score {
+  display: flex;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: 900;
+  align-content: space-between;
+}

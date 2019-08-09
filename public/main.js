@@ -15,7 +15,7 @@ let dealerHand = []
 let playerHand = []
 
 class Card {
-  constructor(rank, suit, value) {
+  constructor(rank, suit) {
     this.rank = rank
     this.suit = suit
   }
@@ -23,8 +23,7 @@ class Card {
 
 const state = {
   suits: ['hearts', 'diamonds', 'spades', 'clubs'],
-  ranks: [
-    {
+  ranks: [{
       name: 'ace',
       value: 11
     },
@@ -79,62 +78,73 @@ const state = {
   ]
 }
 
-for (let i = 0; i < state.suits.length; i++) {
-  const suit = state.suits[i]
-  for (let j = 0; j < state.ranks.length; j++) {
-    deck.push(new Card(state.ranks[j], suit))
+const createDeck = () => {
+  for (let i = 0; i < state.suits.length; i++) {
+    const suit = state.suits[i]
+    for (let j = 0; j < state.ranks.length; j++) {
+      // const value = state.value[]
+      deck.push(new Card(state.ranks[j], suit))
+    }
   }
 }
 
 //   at this point state is never used again until shuffle deck is the man now
 
-//  console.log(deck)
-
 function shuffle(a) {
   for (let i = a.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1))
-    ;[a[i], a[j]] = [a[j], a[i]]
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]]
   }
   return a
 }
 
 let dealCard = () => {}
 
-deck = shuffle(deck)
-// console.log(deck)
-
-for (let i = 0; i < 2; i++) {
-  dealerHand.push(deck.splice(Math.floor(Math.random() * deck.length), 1))
-}
-
-for (let i = 0; i < 2; i++) {
-  playerHand.push(deck.splice(Math.floor(Math.random() * deck.length), 1))
-}
-
 //  Total functions
 //  loop over the hand
-let playerTotal = 0
-for (let i = 0; i < playerHand.length; i++) {
-  //  get the card at index I
-  const card = playerHand[i]
-  // const rank = card.rank
+let total = () => {
+  let playerTotal = 0
+  for (let i = 0; i < playerHand.length; i++) {
+    const card = playerHand[i]
 
-  //  deconstruct the card class to get the rank value
-  const cardValue = Object.card.ranks.value
-
-  playerTotal += cardValue
+    playerTotal += card.rank.value
+  }
+  document.querySelector('.player-total').textContent = playerTotal
+  return playerTotal
 }
 
-console.log(playerTotal)
+let totalDealer = () => {
+  let dealerTotal = 0
+  for (let j = 0; j < dealerHand.length; j++) {
+    const card = dealerHand[j];
 
-console.log(playerTotal)
-
-console.log(dealerHand)
-
-console.log(playerHand)
-
-console.log(deck)
+    dealerTotal += card.rank.value
+  }
+  document.querySelector('.dealer-total').textContent = dealerTotal
+  return dealerTotal
+}
 
 const main = () => {}
 
-document.addEventListener('DOMContentLoaded', main)
+// document.querySelector('.hit-me').addEventListener('click', hitMe)
+document.addEventListener('DOMContentLoaded', () => {
+  createDeck()
+  deck = shuffle(deck)
+
+  for (let i = 0; i < 2; i++) {
+    dealerHand.push(deck.splice(Math.floor(Math.random() * deck.length), 1)[0])
+  }
+
+  for (let i = 0; i < 2; i++) {
+    playerHand.push(deck.splice(Math.floor(Math.random() * deck.length), 1)[0])
+  }
+
+  // console.log(playerTotal)
+
+  console.log(dealerHand)
+  console.log(playerHand)
+  console.log(deck)
+
+  console.log(total())
+  console.log(totalDealer())
+})
