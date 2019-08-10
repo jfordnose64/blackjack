@@ -98,7 +98,11 @@ function shuffle(a) {
   return a
 }
 
-let dealCard = () => {}
+let dealCard = () => {
+  for (let c = 0; c < deck.length; c++) {
+    const playerCards = deck[c] < 2
+  }
+}
 
 //  Total functions
 //  loop over the hand
@@ -116,7 +120,7 @@ let total = () => {
 let totalDealer = () => {
   let dealerTotal = 0
   for (let j = 0; j < dealerHand.length; j++) {
-    const card = dealerHand[j];
+    const card = dealerHand[j]
 
     dealerTotal += card.rank.value
   }
@@ -140,6 +144,10 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // console.log(playerTotal)
+
+  function updateDeck() {
+    document.getElementById('deckcount').textContent = deck.length
+  }
 
   console.log(dealerHand)
   console.log(playerHand)

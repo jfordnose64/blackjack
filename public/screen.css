@@ -19,3 +19,19 @@ body {
   font-weight: 900;
   align-content: space-between;
 }
+
+.player-score,
+.dealer-score {
+  padding: 1rem;
+  font-size: 2rem;
+}
+
+.player-total,
+.dealer-total {
+  font-size: 4rem;
+}
+
+.buttons {
+  size: 4rem;
+  border-radius: 1rem;
+}
