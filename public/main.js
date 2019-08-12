@@ -112,6 +112,7 @@ let total = () => {
     const card = playerHand[i]
 
     playerTotal += card.rank.value
+
   }
   document.querySelector('.player-total').textContent = playerTotal
   return playerTotal
